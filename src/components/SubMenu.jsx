@@ -1,28 +1,30 @@
-export default function MainMenu({
+export default function SubMenu({
   items,
   selectedIndex,
   setSelectedIndex,
-  onOpen,
 }) {
+  if (!items) {
+    return null;
+  }
+
   return (
-    <nav className="main-menu">
+    <nav className="sub-menu">
       {items.map((item, index) => {
         const isSelected = selectedIndex === index;
 
         return (
           <button
             key={item.id}
-            className={`menu-item ${
+            className={`sub-menu-item ${
               isSelected ? "selected" : ""
             }`}
             onMouseEnter={() => setSelectedIndex(index)}
-            onClick={() => onOpen(index)}
           >
             <span className="menu-pointer">
               {isSelected ? ">" : " "}
             </span>
 
-            <span>{item.label}</span>
+            {item.label}
           </button>
         );
       })}
