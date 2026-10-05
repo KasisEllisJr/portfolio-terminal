@@ -6,7 +6,7 @@ export default function MainMenu({
   isActive,
 }) {
   return (
-    <nav className="main-menu">
+    <nav className={`main-menu ${isActive ? "panel-active" : "panel-inactive"}`}>
       {items.map((item, index) => {
         const isSelected = selectedIndex === index && isActive;
 

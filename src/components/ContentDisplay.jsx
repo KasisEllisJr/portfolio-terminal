@@ -1,12 +1,15 @@
 export default function ContentDisplay({
   selectedItem,
+  isActive,
 }) {
   if (!selectedItem) {
     return (
-      <section className="content-display landing-content">
-        <p>
-          Welcome to my personal portfolio.
-        </p>
+      <section
+        className={`content-display landing-content ${
+          isActive ? "panel-active" : "panel-inactive"
+        }`}
+      >
+        <p>Welcome to my personal portfolio.</p>
 
         <p>
           Select a directory to explore the system.
@@ -16,7 +19,11 @@ export default function ContentDisplay({
   }
 
   return (
-    <section className="content-display">
+    <section
+      className={`content-display ${
+        isActive ? "panel-active" : "panel-inactive"
+      }`}
+    >
       <h1>{selectedItem.title}</h1>
 
       <div className="content-divider">

@@ -10,27 +10,34 @@ export default function SubMenu({
   }
 
   return (
-    <nav className="sub-menu">
+    <nav
+      className={`sub-menu ${
+        isActive ? "panel-active" : "panel-inactive"
+      }`}
+    >
       {items.map((item, index) => {
-        const isSelected = selectedIndex === index && isActive;
+        const isSelected =
+          selectedIndex === index && isActive;
 
         return (
           <button
             key={item.id}
             className={`sub-menu-item ${
-                isSelected ? "selected" : ""
+              isSelected ? "selected" : ""
             }`}
-            onMouseEnter={() => setSelectedIndex(index)}
-            onClick={() => {
-                setSelectedIndex(index);
-                onOpen(item);
+            onMouseEnter={() => {
+              setSelectedIndex(index);
             }}
-            >
+            onClick={() => {
+              setSelectedIndex(index);
+              onOpen(item);
+            }}
+          >
             <span className="menu-pointer">
               {isSelected ? ">" : " "}
             </span>
 
-            {item.label}
+            <span>{item.label}</span>
           </button>
         );
       })}

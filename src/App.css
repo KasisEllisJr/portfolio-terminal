@@ -167,7 +167,7 @@ body {
 }
 
 .menu-item:hover,
-.menu-item.selected {
+.sub-menu-item:hover {
   color: #d9fff7;
 
   text-shadow:
@@ -193,12 +193,13 @@ body {
   cursor: pointer;
 }
 
-.sub-menu-item:hover,
+.menu-item.selected,
 .sub-menu-item.selected {
-  color: #d9fff7;
+  color: #eafffb;
 
   text-shadow:
-    0 0 7px rgba(0, 245, 200, 0.7);
+    0 0 8px rgba(0, 245, 200, 0.9),
+    0 0 16px rgba(0, 245, 200, 0.35);
 }
 
 .content-display {
@@ -232,4 +233,27 @@ body {
 
 .landing-content {
   opacity: 0.85;
+}
+
+/* --------------------------- */
+/* ACTIVE PANEL FEEDBACK */
+/* --------------------------- */
+
+.panel-active {
+  opacity: 1;
+}
+
+.panel-inactive {
+  opacity: 0.55;
+}
+
+.panel-active .menu-item,
+.panel-active .sub-menu-item {
+  text-shadow:
+    0 0 6px rgba(0, 245, 200, 0.45);
+}
+
+.panel-inactive .menu-item,
+.panel-inactive .sub-menu-item {
+  text-shadow: none;
 }

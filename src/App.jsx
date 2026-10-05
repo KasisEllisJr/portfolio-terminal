@@ -209,6 +209,7 @@ function App() {
 
           <ContentDisplay
             selectedItem={selectedContent}
+            isActive={activePanel === "content"}
           />
         </main>
 
