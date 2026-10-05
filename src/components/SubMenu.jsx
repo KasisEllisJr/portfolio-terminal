@@ -2,7 +2,8 @@ export default function SubMenu({
   items,
   selectedIndex,
   setSelectedIndex,
-  onSelect,
+  onOpen,
+  isActive,
 }) {
   if (!items) {
     return null;
@@ -11,7 +12,7 @@ export default function SubMenu({
   return (
     <nav className="sub-menu">
       {items.map((item, index) => {
-        const isSelected = selectedIndex === index;
+        const isSelected = selectedIndex === index && isActive;
 
         return (
           <button
@@ -22,7 +23,7 @@ export default function SubMenu({
             onMouseEnter={() => setSelectedIndex(index)}
             onClick={() => {
                 setSelectedIndex(index);
-                onSelect(item);
+                onOpen(item);
             }}
             >
             <span className="menu-pointer">

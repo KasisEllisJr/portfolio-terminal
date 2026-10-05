@@ -19,6 +19,9 @@ function App() {
 
   const [selectedContent, setSelectedContent] =
     useState(null);
+  
+  const [activePanel, setActivePanel] =
+    useState("main");
 
   const activeMenu =
     openMenuIndex !== null
@@ -33,12 +36,26 @@ function App() {
     if (item.children) {
       setOpenMenuIndex(index);
       setSubMenuIndex(null);
+      setSelectedContent(null);
+
+      setActivePanel("submenu");
     }
+  }
+
+  function openSubMenuItem(item) {
+    setSelectedContent(item);
+    setActivePanel("content");
   }
 
   useEffect(() => {
     function handleKeyDown(event) {
-      if (openMenuIndex === null) {
+      const children = activeMenu?.children;
+
+      // -----------------------
+      // MAIN MENU
+      // -----------------------
+
+      if (activePanel === "main") {
         if (event.key === "ArrowDown") {
           event.preventDefault();
 
@@ -78,49 +95,71 @@ function App() {
         return;
       }
 
-      const children = activeMenu?.children;
+      // -----------------------
+      // SUBMENU
+      // -----------------------
 
-      if (!children) {
+      if (activePanel === "submenu") {
+        if (!children) {
+          return;
+        }
+
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+
+          setSubMenuIndex((current) => {
+            if (current === null) {
+              return 0;
+            }
+
+            return (current + 1) % children.length;
+          });
+        }
+
+        if (event.key === "ArrowUp") {
+          event.preventDefault();
+
+          setSubMenuIndex((current) => {
+            if (current === null) {
+              return children.length - 1;
+            }
+
+            return (
+              (current - 1 + children.length) %
+              children.length
+            );
+          });
+        }
+
+        if (event.key === "ArrowLeft") {
+          setActivePanel("main");
+
+          return;
+        }
+
+        if (
+          event.key === "ArrowRight" ||
+          event.key === "Enter"
+        ) {
+          if (subMenuIndex !== null) {
+            setSelectedContent(
+              children[subMenuIndex]
+            );
+
+            setActivePanel("content");
+          }
+        }
+
         return;
       }
 
-      if (event.key === "ArrowDown") {
-        event.preventDefault();
+      // -----------------------
+      // CONTENT PANEL
+      // -----------------------
 
-        setSubMenuIndex((current) => {
-          if (current === null) {
-            return 0;
-          }
-
-          return (current + 1) % children.length;
-        });
-      }
-
-      if (event.key === "ArrowUp") {
-        event.preventDefault();
-
-        setSubMenuIndex((current) => {
-          if (current === null) {
-            return children.length - 1;
-          }
-
-          return (
-            (current - 1 + children.length) %
-            children.length
-          );
-        });
-      }
-
-      if (event.key === "ArrowLeft") {
-        setOpenMenuIndex(null);
-        setSubMenuIndex(null);
-      }
-
-      if (event.key === "Enter") {
-        if (subMenuIndex !== null) {
-          setSelectedContent(
-            children[subMenuIndex]
-          );
+      if (activePanel === "content") {
+        if (event.key === "ArrowLeft") {
+          setActivePanel("submenu");
         }
       }
     }
@@ -135,9 +174,9 @@ function App() {
     };
   }, [
     selectedIndex,
-    openMenuIndex,
-    activeMenu,
     subMenuIndex,
+    activePanel,
+    activeMenu,
   ]);
 
   return (
@@ -157,13 +196,15 @@ function App() {
             selectedIndex={selectedIndex}
             setSelectedIndex={setSelectedIndex}
             onOpen={openMenu}
+            isActive={activePanel === "main"}
           />
 
           <SubMenu
             items={activeMenu?.children}
             selectedIndex={subMenuIndex}
             setSelectedIndex={setSubMenuIndex}
-            onSelect={setSelectedContent}
+            onOpen={openSubMenuItem}
+            isActive={activePanel === "submenu"}
           />
 
           <ContentDisplay

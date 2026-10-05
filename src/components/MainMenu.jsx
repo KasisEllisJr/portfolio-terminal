@@ -3,11 +3,12 @@ export default function MainMenu({
   selectedIndex,
   setSelectedIndex,
   onOpen,
+  isActive,
 }) {
   return (
     <nav className="main-menu">
       {items.map((item, index) => {
-        const isSelected = selectedIndex === index;
+        const isSelected = selectedIndex === index && isActive;
 
         return (
           <button
@@ -15,7 +16,9 @@ export default function MainMenu({
             className={`menu-item ${
               isSelected ? "selected" : ""
             }`}
-            onMouseEnter={() => setSelectedIndex(index)}
+            onMouseEnter={() => {
+                setSelectedIndex(index);
+            }}
             onClick={() => onOpen(index)}
           >
             <span className="menu-pointer">
