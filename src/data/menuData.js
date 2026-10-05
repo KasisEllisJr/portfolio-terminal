@@ -21,27 +21,57 @@ export const menuData = [
   {
     id: "projects",
     label: "projects",
+
     children: [
-      {
+        {
         id: "overview",
         label: "overview",
-      },
-      {
+
+        title: "PROJECTS",
+
+        content:
+            "A collection of software, data, Linux, and hardware projects.",
+        },
+
+        {
         id: "analytics",
         label: "data-analytics",
-      },
-      {
+
+        title: "DATA ANALYTICS",
+
+        content:
+            "Personal analytics and database dashboard project.",
+        },
+
+        {
         id: "application",
         label: "application",
-      },
-      {
+
+        title: "APPLICATION",
+
+        content:
+            "Interactive application built with modern web technologies.",
+        },
+
+        {
         id: "retropi",
         label: "retropi",
-      },
-      {
+
+        title: "RETROPI CONSOLE",
+
+        content:
+            "Custom Raspberry Pi retro gaming console and Linux project.",
+        },
+
+        {
         id: "game",
         label: "game",
-      },
+
+        title: "GAME PROJECT",
+
+        content:
+            "Future game development project.",
+        },
     ],
   },
 

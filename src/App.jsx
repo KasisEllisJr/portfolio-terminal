@@ -4,7 +4,7 @@ import "./App.css";
 import AsciiBackground from "./components/AsciiBackground";
 import MainMenu from "./components/MainMenu";
 import SubMenu from "./components/SubMenu";
-
+import ContentDisplay from "./components/ContentDisplay";
 import { menuData } from "./data/menuData";
 
 function App() {
@@ -15,6 +15,9 @@ function App() {
     useState(null);
 
   const [subMenuIndex, setSubMenuIndex] =
+    useState(null);
+
+  const [selectedContent, setSelectedContent] =
     useState(null);
 
   const activeMenu =
@@ -112,6 +115,14 @@ function App() {
         setOpenMenuIndex(null);
         setSubMenuIndex(null);
       }
+
+      if (event.key === "Enter") {
+        if (subMenuIndex !== null) {
+          setSelectedContent(
+            children[subMenuIndex]
+          );
+        }
+      }
     }
 
     window.addEventListener("keydown", handleKeyDown);
@@ -126,6 +137,7 @@ function App() {
     selectedIndex,
     openMenuIndex,
     activeMenu,
+    subMenuIndex,
   ]);
 
   return (
@@ -151,18 +163,12 @@ function App() {
             items={activeMenu?.children}
             selectedIndex={subMenuIndex}
             setSelectedIndex={setSubMenuIndex}
+            onSelect={setSelectedContent}
           />
 
-          <section className="home-display">
-            <p>
-              Welcome to my personal portfolio!
-            </p>
-
-            <p>
-              Use the arrow keys or mouse to browse
-              the filesystem.
-            </p>
-          </section>
+          <ContentDisplay
+            selectedItem={selectedContent}
+          />
         </main>
 
         <footer className="status-bar">

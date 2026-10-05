@@ -2,6 +2,7 @@ export default function SubMenu({
   items,
   selectedIndex,
   setSelectedIndex,
+  onSelect,
 }) {
   if (!items) {
     return null;
@@ -16,10 +17,14 @@ export default function SubMenu({
           <button
             key={item.id}
             className={`sub-menu-item ${
-              isSelected ? "selected" : ""
+                isSelected ? "selected" : ""
             }`}
             onMouseEnter={() => setSelectedIndex(index)}
-          >
+            onClick={() => {
+                setSelectedIndex(index);
+                onSelect(item);
+            }}
+            >
             <span className="menu-pointer">
               {isSelected ? ">" : " "}
             </span>
