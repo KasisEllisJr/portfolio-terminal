@@ -10,8 +10,25 @@ import { menuData } from "./data/menuData";
 const terminalColors = {
   cyan: "#00f5c8",
   green: "#33ff66",
-  purple: "#b100c9",
+  purple: "#b57aff",
   white: "#e8f0ed",
+};
+const backgroundColors = {
+  cyan: "#06352e",
+  green: "#07351a",
+  purple: "#241438",
+  white: "#292f2d",
+};
+
+const defaultSettings = {
+  track: "off",
+  volume: 40,
+
+  terminalColor: "cyan",
+
+  asciiBackground: true,
+  scanlines: true,
+  crtGlow: true,
 };
 
 function App() {
@@ -30,18 +47,35 @@ function App() {
   const [activePanel, setActivePanel] =
     useState("main");
 
-  const [settings, setSettings] = useState({
-    track: "off",
-    volume: 40,
-    terminalColor: "cyan",
-    asciiBackground: true,
-    scanlines: true,
-    crtGlow: true,
-    
-  })
+  const [settings, setSettings] = useState(() => {
+    const savedSettings =
+      localStorage.getItem("portfolio-settings");
+    if (!savedSettings) {
+      return defaultSettings;
+    }
+
+    try {
+      return {
+        ...defaultSettings,
+        ...JSON.parse(savedSettings),
+      };
+    } catch {
+      return defaultSettings;
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem(
+      "portfolio-settings",
+      JSON.stringify(settings)
+    );
+  }, [settings]);
 
   const terminalColor =
-    terminalColors[settings.terminalColor];
+    terminalColors[settings.terminalColor] ?? terminalColors.cyan;
+
+  const backgroundColor =
+    backgroundColors[settings.terminalColor] ?? backgroundColors.cyan;
 
   const activeMenu =
     openMenuIndex !== null
@@ -216,7 +250,7 @@ function App() {
       }}
     >
       {settings.asciiBackground && (
-        <AsciiBackground />
+        <AsciiBackground color={backgroundColor} />
       )}
 
       <div className="screen">

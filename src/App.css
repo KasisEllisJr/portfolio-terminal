@@ -35,6 +35,7 @@ body {
 
   z-index: 0;
   pointer-events: none;
+  opacity: 0.65;
 }
 
 .screen {
@@ -321,9 +322,12 @@ body {
   background:
     repeating-linear-gradient(
       to bottom,
-      transparent,
+      transparent 0px,
       transparent 2px,
-      rgba(0, 0, 0, 0.18) 3px
+      rgba(0, 0, 0, 0.5) 2px,
+      rgba(0, 0, 0, 0.5) 3px,
+      transparent 5px,
+      transparent 7px
     );
 }
 

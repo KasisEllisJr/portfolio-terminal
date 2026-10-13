@@ -60,10 +60,10 @@ export default function SettingsPanel({
               )
             }
           >
-            <option value="cyan">cyan</option>
-            <option value="green">green</option>
-            <option value="purple">purple</option>
-            <option value="white">white</option>
+            <option value="cyan">Cyan</option>
+            <option value="green">Green</option>
+            <option value="purple">Purple</option>
+            <option value="white">White</option>
           </select>
         </div>
 

@@ -2,12 +2,15 @@ import { useEffect, useRef } from "react";
 
 const pattern = "K4Z3R0k4z3r0═|+:/\\._ ";
 
-export default function AsciiBackground() {
+export default function AsciiBackground({ color = "#06352e" }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
+
     const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
     let animationFrame;
     const startTime = performance.now();
@@ -31,7 +34,8 @@ export default function AsciiBackground() {
       ctx.font = "12px monospace";
       ctx.textBaseline = "top";
 
-      ctx.fillStyle = "rgba(0, 255, 190, 0.08)";
+      // Use the selected shadow color
+      ctx.fillStyle = color;
 
       const t = elapsed * 0.0001;
 
@@ -62,6 +66,7 @@ export default function AsciiBackground() {
     }
 
     resizeCanvas();
+
     window.addEventListener("resize", resizeCanvas);
 
     animationFrame = requestAnimationFrame(draw);
@@ -70,7 +75,12 @@ export default function AsciiBackground() {
       cancelAnimationFrame(animationFrame);
       window.removeEventListener("resize", resizeCanvas);
     };
-  }, []);
+  }, [color]);
 
-  return <canvas ref={canvasRef} className="ascii-background" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="ascii-background"
+    />
+  );
 }
