@@ -23,7 +23,7 @@ body {
   height: 100vh;
 
   background: #010504;
-  color: #00f5c8;
+  color: var(--terminal-color);
 }
 
 .ascii-background {
@@ -57,7 +57,7 @@ body {
 
   padding-bottom: 12px;
 
-  border-bottom: 2px solid #00f5c8;
+  border-bottom: 2px solid var(--terminal-color);
 
   font-size: 20px;
 }
@@ -99,7 +99,7 @@ body {
   border: none;
   background: transparent;
 
-  color: #00f5c8;
+  color: var(--terminal-color);
 
   font-family: inherit;
   font-size: 28px;
@@ -137,7 +137,7 @@ body {
 
   padding-top: 11px;
 
-  border-top: 2px solid #00f5c8;
+  border-top: 2px solid var(--terminal-color);
 
   font-size: 16px;
 }
@@ -150,7 +150,7 @@ body {
   border: none;
   background: transparent;
 
-  color: #00f5c8;
+  color: var(--terminal-color);
 
   font-family: inherit;
   font-size: 28px;
@@ -184,7 +184,7 @@ body {
   border: none;
   background: transparent;
 
-  color: #00f5c8;
+  color: var(--terminal-color);
 
   font-family: inherit;
   font-size: 23px;
@@ -195,11 +195,11 @@ body {
 
 .menu-item.selected,
 .sub-menu-item.selected {
-  color: #eafffb;
+  color: var(--terminal-color);
 
   text-shadow:
-    0 0 8px rgba(0, 245, 200, 0.9),
-    0 0 16px rgba(0, 245, 200, 0.35);
+    0 0 8px var(--terminal-color),
+    0 0 16px var(--terminal-color);
 }
 
 .content-display {
@@ -291,20 +291,43 @@ body {
 .setting-row select {
   background: #010504;
 
-  color: #00f5c8;
+  color: var(--terminal-color);
 
-  border: 1px solid #00f5c8;
+  border: 1px solid var(--terminal-color);
 
   padding: 5px 8px;
 }
 
 .setting-row input[type="range"] {
-  accent-color: #00f5c8;
+  accent-color: var(--terminal-color);
 }
 
 .setting-row input[type="checkbox"] {
-  accent-color: #00f5c8;
+  accent-color: var(--terminal-color);
 
   width: 18px;
   height: 18px;
+}
+
+.crt-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.18) 3px
+    );
+}
+
+.crt-glow {
+  text-shadow:
+    0 0 5px var(--terminal-color);
 }

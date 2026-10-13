@@ -7,6 +7,13 @@ import SubMenu from "./components/SubMenu";
 import ContentDisplay from "./components/ContentDisplay";
 import { menuData } from "./data/menuData";
 
+const terminalColors = {
+  cyan: "#00f5c8",
+  green: "#33ff66",
+  purple: "#b100c9",
+  white: "#e8f0ed",
+};
+
 function App() {
   const [selectedIndex, setSelectedIndex] =
     useState(null);
@@ -32,6 +39,9 @@ function App() {
     crtGlow: true,
     
   })
+
+  const terminalColor =
+    terminalColors[settings.terminalColor];
 
   const activeMenu =
     openMenuIndex !== null
@@ -197,8 +207,17 @@ function App() {
   ]);
 
   return (
-    <div className="terminal">
-      <AsciiBackground />
+    <div
+      className={`terminal ${
+        settings.crtGlow ? "crt-glow" : ""
+      }`}
+      style={{
+        "--terminal-color": terminalColor,
+      }}
+    >
+      {settings.asciiBackground && (
+        <AsciiBackground />
+      )}
 
       <div className="screen">
         <header className="top-bar">
@@ -242,6 +261,9 @@ function App() {
           <span>[ Enter ] Select</span>
         </footer>
       </div>
+      {settings.scanlines && (
+        <div className="crt-overlay" />
+      )}
     </div>
   );
 }

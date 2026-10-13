@@ -62,7 +62,7 @@ export default function SettingsPanel({
           >
             <option value="cyan">cyan</option>
             <option value="green">green</option>
-            <option value="purple">amber</option>
+            <option value="purple">purple</option>
             <option value="white">white</option>
           </select>
         </div>
