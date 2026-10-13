@@ -4,6 +4,7 @@ export default function SubMenu({
   setSelectedIndex,
   onOpen,
   isActive,
+  setActivePanel,
 }) {
   if (!items) {
     return null;
@@ -27,6 +28,7 @@ export default function SubMenu({
             }`}
             onMouseEnter={() => {
               setSelectedIndex(index);
+              setActivePanel("submenu");
             }}
             onClick={() => {
               setSelectedIndex(index);

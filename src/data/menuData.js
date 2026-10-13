@@ -90,5 +90,28 @@ export const menuData = [
   {
     id: "extras",
     label: "extras",
+    children: [
+      {
+        id: "music",
+        label: "music",
+        title: "MUSIC SETTINGS",
+        content:
+          "Configure background music, playback, and volume.",
+      },
+      {
+        id: "appearance",
+        label: "appearance",
+        title: "APPEARANCE SETTINGS",
+        content:
+          "Configure terminal colors, ASCII background, CRT effects, scanlines, glow, and other visual options.",
+      },
+      {
+        id: "system",
+        label: "system",
+        title: "SYSTEM SETTINGS",
+        content:
+          "Configure terminal behavior and interface preferences.",
+      },
+    ],
   },
 ];

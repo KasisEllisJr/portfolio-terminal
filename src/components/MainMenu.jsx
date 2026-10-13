@@ -4,6 +4,7 @@ export default function MainMenu({
   setSelectedIndex,
   onOpen,
   isActive,
+  setActivePanel,
 }) {
   return (
     <nav className={`main-menu ${isActive ? "panel-active" : "panel-inactive"}`}>
@@ -17,7 +18,8 @@ export default function MainMenu({
               isSelected ? "selected" : ""
             }`}
             onMouseEnter={() => {
-                setSelectedIndex(index);
+              setSelectedIndex(index);
+              setActivePanel("main");
             }}
             onClick={() => onOpen(index)}
           >

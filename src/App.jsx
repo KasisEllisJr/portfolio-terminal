@@ -23,6 +23,16 @@ function App() {
   const [activePanel, setActivePanel] =
     useState("main");
 
+  const [settings, setSettings] = useState({
+    track: "off",
+    volume: 40,
+    terminalColor: "cyan",
+    asciiBackground: true,
+    scanlines: true,
+    crtGlow: true,
+    
+  })
+
   const activeMenu =
     openMenuIndex !== null
       ? menuData[openMenuIndex]
@@ -45,6 +55,13 @@ function App() {
   function openSubMenuItem(item) {
     setSelectedContent(item);
     setActivePanel("content");
+  }
+
+  function updateSetting(name, value) {
+    setSettings((current) => ({
+      ...current,
+      [name]: value,
+    }))
   }
 
   useEffect(() => {
@@ -197,6 +214,7 @@ function App() {
             setSelectedIndex={setSelectedIndex}
             onOpen={openMenu}
             isActive={activePanel === "main"}
+            setActivePanel={setActivePanel}
           />
 
           <SubMenu
@@ -205,11 +223,15 @@ function App() {
             setSelectedIndex={setSubMenuIndex}
             onOpen={openSubMenuItem}
             isActive={activePanel === "submenu"}
+            setActivePanel={setActivePanel}
           />
 
           <ContentDisplay
             selectedItem={selectedContent}
             isActive={activePanel === "content"}
+            setActivePanel={setActivePanel}
+            settings={settings}
+            updateSetting={updateSetting}
           />
         </main>
 
