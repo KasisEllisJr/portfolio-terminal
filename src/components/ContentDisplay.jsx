@@ -4,6 +4,8 @@ export default function ContentDisplay({
   selectedItem,
   isActive,
   setActivePanel,
+  settings,
+  updateSetting,
 }) {
   if (!selectedItem) {
     return (
