@@ -220,6 +220,7 @@ function App() {
 
       if (activePanel === "content") {
         if (event.key === "ArrowLeft") {
+          event.preventDefault();
           setActivePanel("submenu");
         }
       }
@@ -239,6 +240,8 @@ function App() {
     activePanel,
     activeMenu,
   ]);
+
+  const isContentExpanded = activePanel === "content";
 
   return (
     <div
@@ -260,7 +263,11 @@ function App() {
           <span>SYSTEM ONLINE</span>
         </header>
 
-        <main className="terminal-content">
+        <main
+          className={`terminal-content ${
+            isContentExpanded ? "content-expanded" : ""
+          }`}
+        >
           <MainMenu
             items={menuData}
             selectedIndex={selectedIndex}

@@ -72,6 +72,13 @@ body {
     50%;
 
   min-height: 0;
+  overflow: hidden;
+
+  transition: grid-template-columns 450ms ease;
+}
+
+.terminal-content.content-expanded {
+  grid-template-columns: 0% 24% 76%;
 }
 
 .main-menu,
@@ -87,11 +94,28 @@ body {
 }
 
 .main-menu {
+  min-width: 0;
   padding-left: 80px;
+  overflow: hidden;
+  transition: 
+    opacity 250ms ease,
+    transform 450ms ease;
+}
+
+.content-expanded .main-menu {
+  opacity: 0;
+  transform: translateX(-100px);
+  pointer-events: none;
 }
 
 .sub-menu {
+  min-width: 0;
   padding-left: 20px;
+  transition: padding-left 450ms ease;
+}
+
+.content-expanded .sub-menu {
+  padding-left: 80px;
 }
 
 .main-menu button {
@@ -204,17 +228,33 @@ body {
 }
 
 .content-display {
+  min-width: 0;
+  min-height: 0;
+
   align-self: center;
   justify-self: center;
 
   width: min(650px, 90%);
+  max-height: 100%;
 
-  padding: 0 30px;
+  padding: 20px 30px;
 
-  background: transparent;
+  background: rgba(1, 5, 4, 0.94);
 
   font-size: 18px;
   line-height: 1.6;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  transition:
+    width 450ms ease,
+    padding 450ms ease;
+}
+
+.content-expanded .content-display {
+  width: min(900px, 92%);
+  padding: 20px 40px;
 }
 
 .content-display h1 {
@@ -334,4 +374,271 @@ body {
 .crt-glow {
   text-shadow:
     0 0 5px var(--terminal-color);
+}
+
+/* --------------------------- */
+/* LEAGUE ANALYTICS PROJECT */
+/* --------------------------- */
+
+.league-project {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 100%;
+  min-width: 0;
+
+  padding-right: 8px;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.league-project-status {
+  font-size: 12px;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+.league-project-description {
+  margin: 0;
+  opacity: 0.85;
+}
+
+.league-project-section h2 {
+  margin: 0 0 10px;
+
+  font-size: 15px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  color: var(--terminal-color);
+}
+
+.league-project-section p {
+  margin: 0;
+  opacity: 0.8;
+}
+
+.league-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.league-tech-list span {
+  padding: 3px 8px;
+  border: 1px solid var(--terminal-color);
+  font-size: 12px;
+}
+
+.league-feature-list {
+  margin: 0;
+  padding-left: 20px;
+  opacity: 0.85;
+}
+
+.league-feature-list li {
+  margin-bottom: 6px;
+}
+
+.league-project-links {
+  padding-top: 15px;
+  border-top: 1px solid var(--terminal-color);
+}
+
+.league-project-links a {
+  color: var(--terminal-color);
+  text-decoration: none;
+}
+
+.league-project-links a:hover {
+  text-shadow: 0 0 8px var(--terminal-color);
+  text-decoration: underline;
+}
+
+.project-status {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.project-entry:has(.project-status) {
+  transition: opacity 200ms ease;
+}
+
+/* PROJECTS OVERVIEW */
+
+.projects-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  width: 100%;
+  max-width: 850px;
+}
+
+.projects-intro {
+  margin: 0;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.projects-directory {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  padding: 10px 14px;
+
+  border-left: 2px solid var(--terminal-color);
+  background: rgba(1, 5, 4, 0.95);
+}
+
+.project-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.project-title {
+  flex: 1 1 240px;
+  min-width: 0;
+
+  font-size: 15px;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+
+.project-status {
+  flex: 0 0 auto;
+
+  font-size: 12px;
+  opacity: 0.7;
+
+  text-transform: uppercase;
+  white-space: nowrap;
+  letter-spacing: 1px;
+}
+
+.project-description {
+  margin: 0;
+  padding-left: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.projects-footer {
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--terminal-color);
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* --------------------------- */
+/* LEAGUE ANALYTICS DETAILS */
+/* --------------------------- */
+
+.league-project-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.league-project-section h2 {
+  margin: 0;
+  padding-bottom: 8px;
+
+  border-bottom: 1px solid var(--terminal-color);
+
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.league-project-section h3 {
+  margin: 0;
+
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.league-dataset-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.league-dataset-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  padding: 12px;
+
+  border: 1px solid var(--terminal-color);
+  background: rgba(1, 5, 4, 0.9);
+}
+
+.league-dataset-item strong {
+  font-size: 23px;
+  font-weight: normal;
+}
+
+.league-dataset-item span {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.league-data-note {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.league-pipeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+
+  text-align: center;
+}
+
+.league-pipeline div {
+  width: 100%;
+  padding: 10px;
+
+  border: 1px solid var(--terminal-color);
+
+  background: rgba(1, 5, 4, 0.9);
+  font-size: 12px;
+}
+
+.league-pipeline span {
+  opacity: 0.7;
+}
+
+.league-features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.league-feature {
+  padding-left: 12px;
+  border-left: 2px solid var(--terminal-color);
+}
+
+.league-feature p {
+  margin-top: 5px;
+  font-size: 13px;
+  opacity: 0.75;
 }

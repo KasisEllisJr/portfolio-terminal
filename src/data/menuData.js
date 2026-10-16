@@ -23,11 +23,14 @@ export const menuData = [
     label: "projects",
     children: [
       {
-        id: "overview",
+        id: "projects-overview",
         label: "overview",
+        title: "PROJECT DIRECTORY",
+        content:
+          ""
       },
       {
-        id: "analytics",
+        id: "data-analytics",
         label: "data-analytics",
       },
       {
